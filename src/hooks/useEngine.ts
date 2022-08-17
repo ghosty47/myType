@@ -30,25 +30,18 @@ const useEngine = () => {
     setState("start");
     setErrors(0);
     setCorrect(0);
+    setTimeLeft(30);
     updateWords();
     clearTyped();
-  }, [clearTyped, updateWords, resetCountdown, resetTotalTyped]);
+  }, [clearTyped, updateWords, resetCountdown, resetTotalTyped, setTimeLeft]);
 
   const sumErrors = useCallback(() => {
     debug(`cursor: ${cursor} - words.length: ${words.length}`);
     const wordsReached = words.substring(0, Math.min(cursor, words.length));
     console.log(countErrors(typed, wordsReached))
     setErrors((prevErrors) => prevErrors + countErrors(typed, wordsReached));
+    setCorrect((prevCorr) => (prevCorr) + (typed.length - countErrors(typed, wordsReached)));
   }, [typed, words, cursor]);
-
-  useEffect(() => {
-    debug(`cursor: ${cursor} - words.length: ${words.length}`);
-    console.log(typed.length);
-    console.log(errors)
-
-    const isCorrect = typed.length - errors;
-    setCorrect(isCorrect);
-  }, [cursor, words.length, typed.length, errors, sumErrors]);
 
   // as soon the user starts typing the first letter, we start
   useEffect(() => {

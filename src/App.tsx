@@ -14,7 +14,7 @@ const App = () => {
   return (
     <>
       <CountdownTimer timeLeft={timeLeft} />
-      <Dropdown setTimeLeft={setTimeLeft}/>
+      <Dropdown timeLeft={timeLeft} setTimeLeft={setTimeLeft}/>
       <WordsContainer>
         <GeneratedWords key={words} words={words} />
         {/* User typed characters will be overlayed over the generated words */}

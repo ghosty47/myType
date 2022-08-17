@@ -1,12 +1,12 @@
 import React from 'react'
 
-export const Dropdown = ({ setTimeLeft }: { setTimeLeft: Function })=> {
+export const Dropdown = ({ setTimeLeft, timeLeft }: { setTimeLeft: Function, timeLeft: number})=> {
   return (
     <>
     <label htmlFor="time">Select a Time:</label>
     <select 
     onChange={(e) => setTimeLeft(e.target.value)}  
-    defaultValue={'Select'} 
+    value={timeLeft} 
     className="mt-6 w-50 ml-3 bg-slate-700 p-2 rounded-md">
       <option
         value="30"
